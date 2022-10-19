@@ -3,18 +3,16 @@ import view
 
 def run():
     option1 = view.show_menu()
-    option2 = view.show_format()
-    if option1 == '1' and option2 == '1':
-        a = view.inp()
-        while a != "":
-            models.txtt(a)
-            a = view.inp()
-    elif option1 == '1' and option2 == '2':
-        a = view.inp()
-        while a != "":
-            models.csvv(a)
-            a = view.inp()
-    elif option1 == '2' and option2 == '1':
-        models.con_csv_txt()
-    elif option1 == '2' and option2 == '2':
-        models.con_txt_csv()
+    if option1 == '1':
+        view.show_res(models.read_csv())
+    elif option1 == '2':
+        models.add_csv(view.add_csv())
+    elif option1 == '3':
+        print(view.show_res(models.read_csv()))
+        models.del_csv(view.del_csv())
+    elif option1 == '4':
+        models.update_csv(*view.inp())
+    elif option1 == '5':
+        models.iport_csv()
+    elif option1 == '6':
+        models.export_csv()

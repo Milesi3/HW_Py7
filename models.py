@@ -1,23 +1,43 @@
 import csv
 
-def txtt(text):
-    with open('File.txt', 'a', encoding='utf-8') as fi_txt:
-        fi_txt.write(text + "\n")
+def read_csv():
+    with open('File.csv', encoding='utf-8') as file:
+        file_csv = csv.reader(file, delimiter=",")
+        a = list(file_csv)
+    return a
+def add_csv(list):
+    with open('File.csv', 'a', encoding='utf-8') as file:
+        file_writer = csv.writer(file, delimiter=",", lineterminator="\r")
+        file_writer.writerow(list.split())
 
-def csvv(text):
-    with open('File.csv', 'a', encoding='utf-8') as fi_csv:
-        file_writer = csv.writer(fi_csv, delimiter=",", lineterminator="\r")
-        file_writer.writerow(text.split())
 
-def con_txt_csv():
-    with open('File.csv', 'w', encoding='utf-8') as fi_csv, open('File.txt', "r", encoding='utf-8') as fi_txt:
-        file_reader = fi_txt.readlines()
-        file_writer = csv.writer(fi_csv, delimiter=",", lineterminator="\r")
-        for line in file_reader:
-            file_writer.writerow(line.split())
+def del_csv(list):
+    temp = read_csv()
+    del temp [int(list)]
+    with open('File.csv', 'w', encoding='utf-8') as file:
+        writer = csv.writer(file, delimiter=",", lineterminator="\r")
+        for row in temp:
+            writer.writerow(row)
 
-def con_csv_txt():
-    with open('File.csv', encoding='utf-8') as fi_csv, open('File.txt',"w",encoding='utf-8') as fi_txt:
-        file_reader = csv.reader(fi_csv, delimiter=",")
-        for row in file_reader:
-            fi_txt.write(f'{row[0]} {row[1]}')
+def update_csv(list, tel):
+    temp = read_csv()
+    print(temp)
+    temp[list][1]= tel
+    with open ('File.csv', 'w', encoding='utf-8') as file:
+        writer = csv.writer(file, delimiter=",", lineterminator="\r")
+        for row in temp:
+            writer.writerow(row)
+
+def export_csv():
+    with open('File.csv', 'a', encoding='utf-8') as file, open('File0.csv', encoding='utf-8') as file0:
+        writer = csv.writer(file, delimiter=",", lineterminator="\r")
+        file_read = csv.reader(file0, delimiter=",")
+        for row in file_read:
+            writer.writerow(row)
+
+def iport_csv():
+    with open('File.csv', 'w', encoding='utf-8') as file, open('File0.csv', encoding='utf-8') as file0:
+        writer = csv.writer(file, delimiter=",", lineterminator="\r")
+        file_read = csv.reader(file0, delimiter=",")
+        for row in file_read:
+            writer.writerow(row)
